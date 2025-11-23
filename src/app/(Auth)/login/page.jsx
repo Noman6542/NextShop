@@ -1,25 +1,47 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../../../Context/AuthProvider";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
-  const [email,setEmail] =useState();
-  const [password,setPassword] =useState()
+  const router = useRouter();
+  const { Login, GoogleLogin } = useContext(AuthContext);
+  const [error, setError] = useState("");
 
-  // const onSubmit =async ()=>{
-  //   await 
-  // }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
+    try {
+      const result = await Login(email, password);
+      const user = result.user;
 
+      toast.success(`Login Successfully, ${user.email}`);
+      router.push("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
+  const handleWithGoogle = async () => {
+    try {
+      const result = await GoogleLogin();
+      const user = result.user;
 
+      toast.success(`Login Successfully, ${user.displayName || user.email}`);
+      router.push("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-white flex items-center justify-center px-4">
-
+    <div className="min-h-screen bg-gradient-r from-blue-50 to-white flex items-center justify-center px-4">
       {/* Login Card */}
       <div className="flex flex-col bg-white shadow-2xl rounded-2xl overflow-hidden max-w-md w-full p-10">
-
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-6">
           Welcome Back to NextShop
         </h2>
@@ -27,14 +49,15 @@ export default function LoginPage() {
           Login to access your account, manage products, and explore our shop.
         </p>
 
-        <form className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
           {/* Email */}
           <div className="relative">
             <label className="label">
               <span className="label-text font-medium">Email</span>
             </label>
             <input
-              onChange={(e)=>setEmail(e.target.value)}
+              required
+              name="email"
               type="email"
               placeholder="you@example.com"
               className="input w-full rounded-lg shadow-lg border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200 transition p-3"
@@ -47,7 +70,8 @@ export default function LoginPage() {
               <span className="label-text font-medium">Password</span>
             </label>
             <input
-              onChange={(e)=>setPassword(e.target.value)}
+              required
+              name="password"
               type="password"
               placeholder="Enter your password"
               className="input w-full rounded-lg shadow-lg border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200 transition p-3"
@@ -60,9 +84,13 @@ export default function LoginPage() {
           </div>
 
           {/* Login button */}
-          <button type="submit" className="btn btn-primary w-full mt-2 p-3 bg-cyan-50 rounded-2xl font-bold">
+          <button
+            type="submit"
+            className="btn btn-primary w-full mt-2 p-3 bg-cyan-50 rounded-2xl font-bold cursor-pointer"
+          >
             Login
           </button>
+          {error && <p className="text-red-400">{error}</p>}
 
           {/* Or divider */}
           <div className="flex items-center gap-4 my-4">
@@ -73,8 +101,9 @@ export default function LoginPage() {
 
           {/* Google login button */}
           <button
+            onClick={handleWithGoogle}
             type="button"
-            className="btn btn-outline btn-accent w-full flex items-center justify-center gap-3 bg-blue-50 p-5 font-bold"
+            className="btn btn-outline btn-accent w-full flex items-center justify-center gap-3 bg-blue-50 p-5 font-bold cursor-pointer"
           >
             <FaGoogle />
             Continue with Google
@@ -84,7 +113,9 @@ export default function LoginPage() {
         <p className="text-center text-gray-500 mt-6 text-sm">
           Don’t have an account?{" "}
           <Link href="/Register" className="link link-primary">
-           <span className="text-red-700 font-bold">Register</span> 
+            <span className="text-red-700 font-bold cursor-pointer">
+              Register
+            </span>
           </Link>
         </p>
       </div>
