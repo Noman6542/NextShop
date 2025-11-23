@@ -8,40 +8,42 @@ import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const router = useRouter();
-    const { GoogleLogin ,createUser} = useContext(AuthContext);
-    const [error, setError] = useState("");
-  
+  const { GoogleLogin, createUser, setUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value.trim();
-    const email = e.target.email.value;
-    const photo = e.target.photo.value;
-    const password = e.target.password.value;
+    const email = e.target.email.value.trim();
+    const photo = e.target.photo.value.trim();
+    const password = e.target.password.value.trim();
+    if (!email || !password || password.length < 6) {
+      toast.error("Please enter a valid email and password (min 6 chars)");
+      return;
+    }
     // console.log(name, email, photo, password);
     createUser(email, password)
       .then((result) => {
         setUser(result.user);
         toast.success("User created:", result.user);
-        navigate("/");
+        router.push("/");
       })
       .catch((error) => {
         toast.error("Firebase Error:", error.message);
       });
   };
 
-
-
   const handleWithGoogle = async () => {
-      try {
-        const result = await GoogleLogin();
-        const user = result.user;
-  
-        toast.success(`Login Successfully, ${user.displayName || user.email}`);
-        router.push("/");
-      } catch (err) {
-        setError(err.message);
-      }
-    };
+    try {
+      const result = await GoogleLogin();
+      const user = result.user;
+
+      toast.success(`Login Successfully, ${user.displayName || user.email}`);
+      router.push("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
   return (
     <div className="min-h-screen bg-gradient- from-blue-50 to-white flex items-center justify-center px-4">
       {/* Register Card */}

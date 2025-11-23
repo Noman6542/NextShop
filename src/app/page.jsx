@@ -1,12 +1,14 @@
 // app/page.jsx
 
-import Hero from "@/component/Hero";
+import Homes from "@/component/Home/Homes";
+
+
 
 
 export default function Home() {
   return (
     <div>
-      <Hero />
+      <Homes></Homes>
       
     </div>
   );

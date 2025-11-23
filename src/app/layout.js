@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/component/Navbar";
 import AuthProvider from "../../Context/AuthProvider";
 import { ToastContainer } from "react-toastify";
+import Footer from "@/component/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <Navbar/>
           {children}
+          <Footer></Footer>
            <ToastContainer 
     position="top-right"
     autoClose={3000}
