@@ -80,7 +80,7 @@ export default function ManageProducts() {
                   <td className="p-3">{p.price}</td>
                   <td className="p-3 flex gap-2">
                     <button
-                      onClick={() => router.push(`/items/${p._id}`)}
+                      onClick={() => router.push(`/item-list/${p._id}`)}
                       className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
                     >
                       View
