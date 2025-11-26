@@ -19,7 +19,7 @@ export default function ManageProducts() {
   }, [user, loading, router]);
 
   const fetchProducts = () => {
-    fetch("http://localhost:5000/items")
+    fetch("https://nextshop-ruby.vercel.app/items")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -36,7 +36,7 @@ export default function ManageProducts() {
   const handleDelete = (id) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
 
-    fetch(`http://localhost:5000/items/${id}`, {
+    fetch(`https://nextshop-ruby.vercel.app/items/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

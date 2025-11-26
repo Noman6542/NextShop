@@ -10,7 +10,7 @@ export default function ItemDetailsPage() {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/items/${id}`) 
+    fetch(`https://nextshop-ruby.vercel.app/items/${id}`) 
       .then(res => res.json())
       .then(data => setItem(data))
       .catch(err => console.log(err));

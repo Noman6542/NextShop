@@ -8,7 +8,7 @@ export default function Features() {
   const [products, setProducts] = useState([]);
   const { loading } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/features") // Express API URL
+    fetch("https://nextshop-ruby.vercel.app/features") // Express API URL
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

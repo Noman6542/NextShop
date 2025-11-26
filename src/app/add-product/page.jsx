@@ -35,7 +35,7 @@ export default function AddProductPage() {
     setToast({ type: "", message: "" });
 
     try {
-      const res = await fetch("http://localhost:5000/items", {
+      const res = await fetch("https://nextshop-ruby.vercel.app/items", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -9,7 +9,7 @@ export default function ItemListPage() {
   const [category, setCategory] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/items")
+    fetch("https://nextshop-ruby.vercel.app/items")
       .then(res => res.json())
       .then(data => setItems(data))
       .catch(err => console.log(err));
@@ -69,7 +69,7 @@ export default function ItemListPage() {
               <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
               <p className="text-gray-600 mb-4 line-clamp-2">{item.description}</p>
               <p className="font-semibold mb-4">{item.price}</p>
-              <Link href={`/item-list/${item.id}`} className="mt-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition cursor-pointer text-center">
+              <Link href={`/item-list/${item._id}`} className="mt-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition cursor-pointer text-center">
                 
                 Details
               </Link>

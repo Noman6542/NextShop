@@ -8,7 +8,7 @@ export default function Products() {
   const [products, setProducts] = useState([]);
     const { loading } = useContext(AuthContext);
     useEffect(() => {
-      fetch("http://localhost:5000/products") 
+      fetch("https://nextshop-ruby.vercel.app/products") 
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
