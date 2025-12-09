@@ -23,7 +23,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="bg-gray-50 min-h-screen flex items-center justify-center py-16">
+    <section className="bg-gray-50 min-h-screen flex items-center justify-center py-16 max-w-6xl mx-auto">
       <div className="max-w-md w-full bg-white p-8 rounded-xl shadow text-center">
         <h1 className="text-3xl font-bold mb-4">Contact Me</h1>
         <p className="text-gray-600 mb-6">

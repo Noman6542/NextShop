@@ -25,7 +25,7 @@ export default function ItemDetailsPage() {
     );
 
   return (
-    <section className="py-16 bg-gray-50 min-h-screen">
+    <section className="py-16 bg-gray-50 min-h-screen max-w-6xl mx-auto">
       <div className="container mx-auto px-4">
         {/* Back Button */}
         <button

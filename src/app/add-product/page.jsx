@@ -70,7 +70,7 @@ export default function AddProductPage() {
   }
 
   return (
-    <section className="py-16 bg-gray-50 min-h-screen">
+    <section className="py-16 bg-gray-50 min-h-screen max-w-6xl mx-auto">
       <div className="container mx-auto px-4 max-w-lg bg-white p-8 rounded-xl shadow">
         <h1 className="text-3xl font-bold mb-6 text-center">Add Product</h1>
 

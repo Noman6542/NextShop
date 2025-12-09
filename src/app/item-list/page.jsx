@@ -27,7 +27,7 @@ export default function ItemListPage() {
   const categories = [...new Set(items.map(item => item.category))];
 
   return (
-    <section className="py-16 bg-gray-50 min-h-screen">
+    <section className="py-16 bg-gray-50 min-h-screen max-w-6xl mx-auto">
       <div className="container mx-auto px-4">
         {/* Page title */}
         <h1 className="text-4xl font-bold mb-2 text-center">Item List</h1>

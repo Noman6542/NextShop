@@ -10,12 +10,12 @@ import Testimonials from "../Section/Testimonials";
 
 export default function Homes() {
   return (
-    <>
+    <div className="max-w-6xl mx-auto">
       <Hero />
       <Features />
       <Products />
       <Testimonials />
       <Promobanner />
-    </>
+    </div>
   );
 }

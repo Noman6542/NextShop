@@ -56,7 +56,7 @@ export default function ManageProducts() {
   }
 
   return (
-    <section className="py-16 bg-gray-50 min-h-screen">
+    <section className="py-16 bg-gray-50 min-h-screen max-w-6xl mx-auto">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold mb-6 text-center">Manage Products</h1>
 
