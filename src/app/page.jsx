@@ -1,4 +1,4 @@
-// app/page.jsx
+// app
 
 import Homes from "@/component/Home/Homes";
 
